@@ -1,0 +1,312 @@
+\documentclass[12pt,pdftex]{article}
+\usepackage[pdftex]{graphicx,color}
+\usepackage{setspace,palatino,multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{titlesec}
+\usepackage{lscape}
+%\usepackage{subfigure}
+\usepackage{threeparttable}
+\usepackage{natbib}
+\bibliographystyle{ecta}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{xcolor}
+\usepackage{rotating}
+\usepackage[listings, most]{tcolorbox}
+\definecolor{nblue}{RGB}{0,0,128}
+\usepackage{afterpage}
+
+\usepackage[pdftex,colorlinks=true, bookmarks=false,
+pdfstartview={XYZ null null 0.85},
+pdftitle={How Restrictive is U.S. Trade Policy?},
+pdfauthor={Michael E. Waugh},
+pdfkeywords={tariffs, trade wars, Minneapolis Fed, trade policy
+Trade Restrictiveness Index, U.S. trade policy, Deadweight loss},
+colorlinks=true,linkcolor=darkgray,citecolor=darkgray,urlcolor=darkgray,
+breaklinks]{hyperref}
+
+
+\newcounter{saveeqni}%
+\newcounter{saveeqn01i}%
+\newcommand{\alpheqni}{\setcounter{saveeqni}{\value{section}}%
+%\setcounter{saveeqn01i}{\value{subsectioni}}%
+\renewcommand{\theequation}
+    {\alph{saveeqni}\mbox{.\arabic{equation}}}}%
+\newcommand{\reseteqni}{\setcounter{equation}{\value{saveeqni}}%
+\renewcommand{\theequation}{\arabic{equation}}}%
+
+\newtheorem{as}{Assumption}
+\newtheorem{reg}{Regularity Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corr}{Corollary}
+\newtheorem{df}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prp}{Proposition}
+\newtheorem{rmk}{Remark}
+\newenvironment{prf}{{\bf Proof}}{\hfill { }}
+\newenvironment{prompt}{\par\medskip\noindent}{\par\medskip}
+
+\DeclareMathOperator*{\plim}{plim}
+\DeclareMathOperator*{\umax}{max}
+
+\special{papersize=8.5in,11in}
+\onehalfspacing
+\setlength{\parindent}{0.1em}
+\setlength{\parskip}{.09in}
+\textwidth15.75cm
+\evensidemargin 1.5in
+\oddsidemargin 1.5in
+\topmargin 8.5cm
+\textheight 10in
+\hyphenation{over-lapping}
+
+\tcolorboxenvironment{prp}{%
+boxrule = 0mm, breakable, colframe=white,
+before skip=5pt,after skip=5pt,
+colback=gray!5!white,
+top = 2mm,
+bottom = 2mm%,
+%borderline north={1pt}{1pt}{gray},
+%borderline south={1pt}{1pt}{gray}
+}
+
+\tcolorboxenvironment{prompt}{%
+boxrule = 0mm, breakable, colframe=white,
+before skip=5pt,after skip=5pt,
+colback=gray!5!white,
+top = 2mm,
+bottom = 2mm%,
+%borderline north={1pt}{1pt}{gray},
+%borderline south={1pt}{1pt}{gray}
+}
+
+\titleformat{\section}{\color{black}\large\bf}{\color{black}{\thesection.}}{.25cm}{}
+\titleformat{\subsection}{\color{black}\normalsize\bf}{\thesubsection.}{.5em}{}
+\titleformat{\subsubsection}{\color{black}\normalsize\bf}{\thesubsubsection.}{.5em}{}
+
+\titlespacing{\section}{0pt}{*1.5}{*.5}
+\titlespacing{\subsection}{0pt}{*1.5}{*.5}
+\titlespacing{\subsubsection}{0pt}{*1.5}{*.5}
+
+\def\thesection{\arabic{section}}
+\def\thesubsection{\arabic{section}.\arabic{subsection}}
+\def\thesubsubsection{\arabic{section}.\arabic{subsection}.\Alph{subsubsection}}
+
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+
+\renewcommand{\arraystretch}{1.1}
+\usepackage[margin=2cm]{geometry}
+
+%\input{results.tex}
+
+\begin{document}
+
+
+\begin{onehalfspacing}
+
+{\large \textbf{Trade in AI-Related Products}}
+
+\vspace{0.5cm}
+
+\href{http://www.waugheconomics.com/}{Michael E. Waugh} \\ Federal Reserve Bank of Minneapolis and NBER
+
+\vspace{0.5cm}
+
+January 2025
+
+\vspace{0.5cm}
+
+
+
+\vspace{1.5cm}
+
+
+\normalsize
+
+ABSTRACT ------------------------------------------------------------------------------------------------------------
+
+This paper documents facts about international trade in AI-related products. I develop a large language model (LLM) classification tool that maps HS10 codes in U.S. trade data to inputs used in the construction and operation of data centers and related AI infrastructure. Using this classification, I show that U.S. trade in AI-related products rose by 130 percent since 2023 and diverged sharply from non-AI trade starting in early 2024. AI-related imports face substantially lower tariffs, about 3 percent versus 15 percent for non-AI products. Since the start of the 2025 trade war, aggregate trade appears stable only because AI-related trade more than offset a large decline in non-AI trade.
+
+------------------------------------------------------------------------------------------------------------------------------
+\vspace{0.25cm}
+
+JEL Classification: F13, F14\\
+%%
+%%
+Keywords: Tariffs, U.S. Trade Policy, Trade Restrictiveness Index
+
+% need to run notebooks: TRI-all-country.ipynb
+% then run TRI-sector
+
+\vspace{4.0cm}
+
+{\footnotesize Email: michael.e.waugh@gmail.com. The views expressed herein are those of the author and not necessarily those of the Federal Reserve Bank of Minneapolis or the Federal Reserve System. My github repository provides the code and supplementary work behind this paper at \url{https://github.com/}.}
+
+\hspace{-0.05cm}
+
+\newpage
+
+\subsection*{Introduction}
+
+
+
+\section{Classifying AI-Related Products}\label{sec:measurment}
+
+This section describes how I classify internationally traded commodities that are plausibly used to build and operate AI-focused data centers | hyperscale facilities where GPU servers, high-speed networking, and high-density power and cooling are inputs. The measurement question is: which traded goods plausibly enter AI data-center construction and equipment and operations and maintenance?
+
+I treat this as a classification problem and use a large language model (LLM) to systematically label the universe of HS10 commodity codes (about 19,000) by their relevance to AI data-center infrastructure. There are several nice examples of using LLMs for classification purposes in economics. For example, \citet{clayton2025geoeconomic} develop measures of ``geoeconomic pressure'' by using the LLM to read earnings calls and classify which governments apply pressure, to whom, and how. Similarly, \citet{lagakos2025american} use LLMs to extract systematic information from individuals' life narratives on important life junctures, sources of meaning, and overall life satisfaction. The methodological idea is the same | provide the LLM a list of HS10 commodity descriptions and then ask systematic questions about the relevance and possible use of the product in AI.
+
+\subsection{Data}
+
+One key input to the LLM is the complete universe of 10-digit Harmonized System commodity codes from U.S. Census Bureau trade statistics. The HS10 classification provides the finest level of product disaggregation available in U.S. trade data, with 19,424 distinct codes as of 2024. Each code includes a standardized commodity description. As an example, consider
+\begin{prompt}
+\noindent\texttt{8542310040: PROCESSORS (INCLUDING MICROPROCESSORS): GRAPHICS PROCESSING UNITS (GPUS).}
+\end{prompt}
+where \texttt{8542310040} is the HS10 code and the description indicates that this product is a processor and specifically a GPU. As discussed below, this is a canonical \textbf{High} example.
+
+\subsection{LLM Classification Procedure}
+
+The classification procedure requires specifying both a categorization scheme and a prompt to implement it. The primary scheme that I implement is to classify each HS10 code into one of three bins:
+\begin{itemize}
+    \item \textbf{High}: Products directly used in data center construction or operation, with clear application to compute, cooling, power, networking, or facility infrastructure
+    \item \textbf{Medium}: Products with plausible data center applications but also significant non-data-center uses, or indirect inputs to data center materials
+    \item \textbf{Low}: Products with no apparent connection to data center construction
+\end{itemize}
+In baseline results I focus on products classified as \textbf{High}; \textbf{Medium} only enters robustness/upper bounds.
+
+In addition to this categorization, I also ask the model to provide a confidence score, a use category within which the product might be used, and finally, a natural language explanation of the classification decision. These additional outputs provide me an ability to ex-post scrutinize the classification. So, for each HS10 code $i$ with description $d_i$, I prompt the model to return a structured classification object:
+\begin{equation}
+    C_i = \{\texttt{relevance}_i, \ \texttt{confidence}_i, \ \texttt{category}_i, \ \texttt{reasoning}_i\}
+\end{equation}
+\noindent where:
+\begin{itemize}
+    \item $\texttt{relevance}_i \in \{\text{\textbf{High}}, \text{\textbf{Medium}}, \text{\textbf{Low}}\}$ is constrained by an enumerated type,
+    \item $\texttt{confidence}_i \in [0, 100]$ is an integer confidence score,
+    \item $\texttt{category}_i$ maps to one of nine predefined categories (Compute Hardware, Networking/Telecom, Cooling/HVAC, Electrical/Power, Building Structure, Fire Safety/Security, Specialty Materials, Maintenance/Operations, Not DC Related),
+    \item $\texttt{reasoning}_i$ provides a natural language explanation of the classification decision.
+\end{itemize}
+The schema enforcement ensures that every response contains valid values for all fields. The model cannot return ``Medium-High'' or ``Moderate''---only the three specified relevance levels. The structured approach facilitates systematic analysis and comparison across different LLM models.
+
+An important input is the prompt to the LLM. The prompt provides context on AI data center construction, describing the categories of relevant products, and other related information. The prompt also ensures that the output is structured according to the schema described above. The complete prompt is presented in the appendix, but the first snippet is the following:
+\begin{prompt}
+\texttt{You are an expert in AI data center construction, operations, and supply chains. Your task is to classify HS10 commodity codes by their relevance to building and operating AI-focused data centers (hyperscale facilities running GPU clusters for training and inference).}\\
+
+\texttt{Consider these categories of relevant products: COMPUTE: GPUs, CPUs, memory, PCBs, servers, storage drives, semiconductors; NETWORKING: Fiber optics, switches, routers, transceivers, cables; COOLING: Chillers, cooling towers, CRAH units, fans, pumps, refrigerants; ELECTRICAL: Transformers, switchgear, UPS, batteries, generators, cables; BUILDING: Structural steel, concrete, rebar, insulation, raised floors; SPECIALTY MATERIALS: Rare earths, copper, aluminum, tantalum, thermal interface materials...}
+\end{prompt}
+In addition to this prompt, it also instructs the model to consider edge cases explicitly. For example, products like diesel engines could be relevant (for generators) or irrelevant (for vehicles), and that context from the HS code description should guide the determination.
+
+I employ Claude (Anthropic) as my main classification model, using the tool-calling API to obtain structured responses.\footnote{I use the \texttt{claude-sonnet-4-20250514} model. Results are robust to using alternative frontier models; see Appendix \ref{app:robustness}.} I set the temperature... I process all 19,424 HS10 codes through the classification API with rate limiting to respect API constraints. Processing all codes required about a day and a half at a total cost of approximately \$150.
+
+
+%\afterpage{%
+%\clearpage
+%\begin{landscape}
+%\begin{figure}
+%\centering
+%\caption{Tariff Measures for Selected HS2 Sectors}\label{fig:sector-tariff-pannel}
+%\includegraphics[height=0.95\textheight]{./figures/panel-top-sector-tariffs.pdf}
+%\end{figure}
+%\end{landscape}}
+
+
+
+%\afterpage{%
+%\clearpage
+%\input{table.tex}
+%}
+%
+%\afterpage{%
+%\clearpage
+%\begin{landscape}
+%\input{table-sector.tex}
+%\end{landscape}
+%}
+
+\newpage
+
+\bibliography{us-tariff-bibtex}
+
+
+\newpage
+
+\section*{Appendix}
+
+\begin{prompt}
+\noindent
+
+\textbf{System Prompt:}
+
+\medskip
+
+You are an expert in AI data center construction, operations, and supply chains.
+
+Your task is to classify HS10 commodity codes by their relevance to building and operating AI-focused data centers (hyperscale facilities running GPU clusters for training and inference).
+
+\medskip
+
+Consider these categories of relevant products:
+
+\begin{itemize}
+    \item \textbf{COMPUTE:} GPUs, CPUs, memory, PCBs, servers, storage drives, semiconductors
+    \item \textbf{NETWORKING:} Fiber optics, switches, routers, transceivers, cables
+    \item \textbf{COOLING:} Chillers, cooling towers, CRAH units, fans, pumps, refrigerants, glycol
+    \item \textbf{ELECTRICAL:} Transformers, switchgear, UPS, batteries, generators, cables, busbars
+    \item \textbf{BUILDING:} Structural steel, concrete, rebar, insulation, raised floors, fire suppression
+    \item \textbf{SPECIALTY MATERIALS:} Rare earths, copper, aluminum, tantalum, thermal interface materials
+\end{itemize}
+
+\medskip
+
+Be thoughtful about edge cases:
+\begin{itemize}
+    \item ``Diesel engines'' could be for generators (relevant) or vehicles (not relevant)
+    \item ``Pumps'' could be for cooling systems (relevant) or unrelated industrial use
+    \item ``Copper wire'' is relevant for electrical systems
+    \item Food, textiles, furniture, and consumer goods are generally NOT relevant
+\end{itemize}
+
+\medskip
+
+Use the \texttt{classify\_hs10\_code} tool to record your assessment.
+
+\bigskip
+\hrule
+\bigskip
+
+\textbf{User Prompt:}
+
+\medskip
+
+Classify this HS10 code:
+
+Code: \{hs10\_code\}
+
+Description: \{description\}
+
+\bigskip
+\hrule
+\bigskip
+
+\textbf{Tool Schema (Structured Output):}
+
+\medskip
+
+\texttt{relevance}: enum [``High'', ``Medium'', ``Low'']
+
+\texttt{confidence}: integer, 0--100
+
+\texttt{primary\_category}: enum [``Compute\_Hardware'', ``Networking\_Telecom'', ``Cooling\_HVAC'', ``Electrical\_Power'', ``Building\_Structure'', ``Fire\_Safety\_Security'', ``Specialty\_Materials'', ``Maintenance\_Operations'', ``Not\_DC\_Related'']
+
+\texttt{specific\_use}: string (e.g., ``GPU accelerators'', ``backup generator fuel'')
+
+\texttt{reasoning}: string (explanation of classification decision)
+
+\end{prompt}
+
+
+\end{onehalfspacing}
+
+\end{document}
