@@ -273,7 +273,7 @@ def resume_batch_classification(
     Example
     -------
     >>> results = resume_batch_classification(
-    ...     all_codes_file='unique_hs10_naics_descriptions.csv',
+    ...     all_codes_file='data-input/unique_hs10_naics_descriptions.csv',
     ...     checkpoint_file='hs10_classification_progress_v2.csv',
     ...     output_file='hs10_classification_final_v2.csv'
     ... )

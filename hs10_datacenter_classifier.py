@@ -16,7 +16,7 @@ Usage in Jupyter Notebook:
     from hs10_datacenter_classifier import classify_hs10_file, classify_single_code
     
     # Classify a full file
-    results_df = classify_hs10_file('unique_hs10_commodities.csv', 'output_classification.csv')
+    results_df = classify_hs10_file('data-input/unique_hs10_commodities.csv', 'output_classification.csv')
     
     # Or classify a single code
     relevance, mapping = classify_single_code("AUTOMATIC DATA PROCESSING MACHINES")
@@ -503,7 +503,7 @@ if __name__ == "__main__":
     import sys
     
     # Default file paths (modify as needed)
-    DEFAULT_INPUT = "unique_hs10_commodities.csv"
+    DEFAULT_INPUT = "data-input/unique_hs10_commodities.csv"
     DEFAULT_OUTPUT = "hs10_datacenter_classification.csv"
     
     # Get file paths from command line or use defaults
