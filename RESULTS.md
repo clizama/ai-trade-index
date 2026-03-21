@@ -2,13 +2,24 @@
 
 **Abstract.** This paper documents facts about international trade in AI-related products. I develop a large language model (LLM) classification tool that maps HS10 codes in U.S. trade data to inputs used in the construction and operation of AI infrastructure. AI-related products account for 23 percent of U.S. imports in 2025, and these products have grown by 73 percent since 2023. Over this same time period, non-AI-related products have grown by only 3 percent, with the divergence between the two categories beginning in early 2024. U.S. exports of AI-related products have been abnormally strong as well. Mexico is a key market for both the import and export side, and along with Taiwan these two countries account for about half of all AI trade. A simple accounting exercise suggests that the U.S. goods trade deficit would have been nearly $200 billion smaller in 2025 absent trade in AI-related products.
 
+
 > **Citation:** If you use or quote this data, please cite as:
 >
 > Waugh, Michael E. "Trade in AI-Related Products." Working Paper, Federal Reserve Bank of Minneapolis, March 2026.
 
+
 ---
 
 This document walks through the key findings from the analysis of U.S. trade in AI-related products. The analysis uses an LLM-based classification tool to identify which of the roughly 18,364 HS10 commodity codes in U.S. trade data are related to AI data center infrastructure. The classification methodology is documented in [HS10_CLASSIFIER_DOCUMENTATION.md](HS10_CLASSIFIER_DOCUMENTATION.md), and a full listing of high-relevance products is available in [AI_TRADE_HIGH_RELEVANCE_PRODUCTS.md](AI_TRADE_HIGH_RELEVANCE_PRODUCTS.md). Trade data comes from the U.S. Census Bureau and covers monthly flows from 2013 through January 2026.
+
+**Contents**
+
+1. [What Are AI-Related Products?](#1-what-are-ai-related-products)
+2. [The Spectacular Growth of AI-Related Trade](#2-the-spectacular-growth-of-ai-related-trade)
+3. [Mexico and Taiwan Are Dominant Sources](#3-mexico-and-taiwan-are-dominant-sources)
+4. [Tariffs Are Lower on AI-Related Products](#4-tariffs-are-lower-on-ai-related-products)
+5. [U.S. Exports of AI-Related Products](#5-us-exports-of-ai-related-products)
+6. [Counterfactual: AI's Impact on the Trade Deficit](#6-counterfactual-ais-impact-on-the-trade-deficit)
 
 ---
 
