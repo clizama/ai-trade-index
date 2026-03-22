@@ -9,6 +9,8 @@ for full methodology.
 **High relevance** means the product is directly used in data center construction
 or operation — compute, cooling, power, networking, or facility infrastructure.
 
+**Note:** This list contains 655 High-relevance codes. The trade analysis tables report 645 because 10 codes fall under HS2 chapter 27 (petroleum/electrical energy), which is excluded from the analysis due to price volatility.
+
 ## Summary by Category
 
 | Category | HS10 Codes |
