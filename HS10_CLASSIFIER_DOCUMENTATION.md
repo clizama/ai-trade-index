@@ -148,10 +148,11 @@ python-dotenv  # optional, for .env support
 
 ```
 ai-trade-index/
-├── hs10_llm_classifier_naics.py          # Main classifier module (v2, NAICS-enhanced)
-├── hs10_llm_classifier_demo.py           # Original classifier module (v1, no NAICS)
-├── 04-classify-imports.ipynb             # Production notebook — imports classification
-├── 05-classify-exports.ipynb             # Production notebook — exports classification
+├── code/
+│   ├── hs10_llm_classifier_naics.py      # Main classifier module (v2, NAICS-enhanced)
+│   ├── hs10_llm_classifier_demo.py       # Original classifier module (v1, no NAICS)
+│   ├── 04-classify-imports.ipynb         # Production notebook — imports classification
+│   └── 05-classify-exports.ipynb         # Production notebook — exports classification
 ├── data-input/
 │   ├── unique_hs10_naics_descriptions.csv  # Input: HS10 codes + NAICS mappings (~18,701 rows)
 │   ├── unique_hs10_commodities.csv         # Input: HS10 codes + long descriptions (~19,425 rows)

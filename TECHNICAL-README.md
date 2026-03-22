@@ -38,9 +38,22 @@ ai-trade-index/
 │   │   └── ...
 │   └── figures/                       # Generated figures (PNG + PDF)
 │
-├── hs10_llm_classifier_naics.py       # LLM classifier module (with NAICS context)
-├── hs10_llm_classifier_demo.py        # LLM classifier module (basic)
-├── hs10_datacenter_classifier.py      # Rule-based classifier (legacy)
+├── code/                              # Notebooks and classifier modules
+│   ├── 01-make-hs10-list.ipynb        # Extract unique HS10 codes
+│   ├── 02-make-naics-descriptions.ipynb
+│   ├── 03-make-imports-dataset.ipynb
+│   ├── 04-classify-imports.ipynb      # LLM classification (requires API key)
+│   ├── 05-classify-exports.ipynb
+│   ├── 06-section2-products.ipynb     # Analysis notebooks (06-12)
+│   ├── 07-section2-growth.ipynb
+│   ├── 08-section2-countries.ipynb
+│   ├── 09-section2-tariffs.ipynb
+│   ├── 10-section3-exports.ipynb
+│   ├── 11-counterfactual.ipynb
+│   ├── 12-robustness.ipynb
+│   ├── hs10_llm_classifier_naics.py   # LLM classifier module (with NAICS context)
+│   ├── hs10_llm_classifier_demo.py    # LLM classifier module (basic)
+│   └── hs10_datacenter_classifier.py  # Rule-based classifier (legacy)
 │
 ├── README.md                          # Results walkthrough with figures and tables
 ├── HS10_CLASSIFIER_DOCUMENTATION.md   # LLM classification methodology
@@ -52,22 +65,22 @@ ai-trade-index/
 
 ## Notebook Pipeline
 
-The notebooks are numbered and should be run in order. Notebooks 01-05 build the data; 06-12 produce the analysis.
+All notebooks live in the `code/` folder and are numbered to run in order. Notebooks 01-05 build the data; 06-12 produce the analysis.
 
 | Notebook | Purpose | Key Outputs |
 |---|---|---|
-| **01-make-hs10-list.ipynb** | Extract unique HS10 codes from Census import data | `unique_hs10_commodities.csv` |
-| **02-make-naics-descriptions.ipynb** | Build HS10-to-NAICS crosswalk for classifier context | `unique_hs10_naics_descriptions.csv` |
-| **03-make-imports-dataset.ipynb** | Assemble monthly import parquet files from Census API | `TOTALdata-current.parquet`, `ALL-data-current.parquet` |
-| **04-classify-imports.ipynb** | LLM classification of import HS10 codes (requires API key) | `hs10_classification_final_v3.csv` |
-| **05-classify-exports.ipynb** | LLM classification of export HS10 codes (requires API key) | `hs10_classification_exports_final.csv` |
-| **06-section2-products.ipynb** | Product classification tables and top-10 lists | `trade_hierarchical.tex`, `top10_*.tex` |
-| **07-section2-growth.ipynb** | Import growth index and AI trade share | `ai-trade-index.png`, `ai-trade-share.png`, `ai_trade_index_series.csv` |
-| **08-section2-countries.ipynb** | Country-level import analysis | `ai-by-country.png`, `ai-by-country-category.png` |
-| **09-section2-tariffs.ipynb** | Tariff comparison and exemption analysis | `ai-tariffs.png`, exemption tables |
-| **10-section3-exports.ipynb** | Export-side analysis | `ai-exports-index.png`, `ai-exports-share.png` |
-| **11-counterfactual.ipynb** | Counterfactual trade balance exercise | `counterfactual-balance.png`, `counterfactual_summary.tex` |
-| **12-robustness.ipynb** | Robustness checks | Additional tables |
+| **01-make-hs10-list** | Extract unique HS10 codes from Census import data | `unique_hs10_commodities.csv` |
+| **02-make-naics-descriptions** | Build HS10-to-NAICS crosswalk for classifier context | `unique_hs10_naics_descriptions.csv` |
+| **03-make-imports-dataset** | Assemble monthly import parquet files from Census API | `TOTALdata-current.parquet`, `ALL-data-current.parquet` |
+| **04-classify-imports** | LLM classification of import HS10 codes (requires API key) | `hs10_classification_final_v3.csv` |
+| **05-classify-exports** | LLM classification of export HS10 codes (requires API key) | `hs10_classification_exports_final.csv` |
+| **06-section2-products** | Product classification tables and top-10 lists | `trade_hierarchical.tex`, `top10_*.tex` |
+| **07-section2-growth** | Import growth index and AI trade share | `ai-trade-index.png`, `ai-trade-share.png`, `ai_trade_index_series.csv` |
+| **08-section2-countries** | Country-level import analysis | `ai-by-country.png`, `ai-by-country-category.png` |
+| **09-section2-tariffs** | Tariff comparison and exemption analysis | `ai-tariffs.png`, exemption tables |
+| **10-section3-exports** | Export-side analysis | `ai-exports-index.png`, `ai-exports-share.png` |
+| **11-counterfactual** | Counterfactual trade balance exercise | `counterfactual-balance.png`, `counterfactual_summary.tex` |
+| **12-robustness** | Robustness checks | Additional tables |
 
 ## LLM Classification
 
@@ -86,8 +99,8 @@ Full methodology: [HS10_CLASSIFIER_DOCUMENTATION.md](HS10_CLASSIFIER_DOCUMENTATI
 **Reproduce from existing classifications (no API key needed):**
 
 ```bash
-# Run notebooks 06-12 in order
-# Each notebook reads from data-input/ and writes to paper/tables/ and paper/figures/
+# Run notebooks 06-12 in the code/ folder
+# Each notebook reads from ../data-input/ and writes to ../paper/tables/ and ../paper/figures/
 ```
 
 **Reproduce from scratch (requires Anthropic API key):**
@@ -96,7 +109,7 @@ Full methodology: [HS10_CLASSIFIER_DOCUMENTATION.md](HS10_CLASSIFIER_DOCUMENTATI
 # Set API key
 export ANTHROPIC_API_KEY="your-key-here"
 
-# Run notebooks 01-12 in order
+# Run notebooks 01-12 in the code/ folder
 # Notebooks 04-05 will call the Claude API (~$150 total, several hours)
 ```
 
