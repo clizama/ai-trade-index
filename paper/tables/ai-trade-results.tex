@@ -1,15 +1,15 @@
-\newcommand{\highAiHsCodes}{645} % Number of HS10 codes classified as high AI relevance
-\newcommand{\highAiTwentyThree}{379} % High AI relevance imports in 2023 ($B)
-\newcommand{\highAiTwentyFive}{654} % High AI relevance imports in 2025 ($B)
-\newcommand{\highAiPctChange}{73} % High AI relevance percent change 2023-2025
-\newcommand{\lowAiHsCodes}{15915} % Number of HS10 codes classified as low AI relevance
-\newcommand{\lowAiTwentyThree}{1835} % Low AI relevance imports in 2023 ($B)
-\newcommand{\lowAiTwentyFive}{1881} % Low AI relevance imports in 2025 ($B)
-\newcommand{\lowAiPctChange}{3} % Low AI relevance percent change 2023-2025
-\newcommand{\totalTradeHsCodes}{18364} % Total number of HS10 codes in dataset
-\newcommand{\totalTradeTwentyThree}{2598} % Total imports in 2023 ($B)
-\newcommand{\totalTradeTwentyFive}{2884} % Total imports in 2025 ($B)
-\newcommand{\totalTradePctChange}{11} % Total trade percent change 2023-2025
+\def\highAiHsCodes{645} % Number of HS10 codes classified as high AI relevance
+\def\highAiTwentyThree{379} % High AI relevance imports in 2023 ($B)
+\def\highAiTwentyFive{654} % High AI relevance imports in 2025 ($B)
+\def\highAiPctChange{73} % High AI relevance percent change 2023-2025
+\def\lowAiHsCodes{15915} % Number of HS10 codes classified as low AI relevance
+\def\lowAiTwentyThree{0} % Low AI relevance imports in 2023 ($B)
+\def\lowAiTwentyFive{1881} % Low AI relevance imports in 2025 ($B)
+\def\lowAiPctChange{inf} % Low AI relevance percent change 2023-2025
+\def\totalTradeHsCodes{18364} % Total number of HS10 codes in dataset
+\def\totalTradeTwentyThree{2598} % Total imports in 2023 ($B)
+\def\totalTradeTwentyFive{2884} % Total imports in 2025 ($B)
+\def\totalTradePctChange{11} % Total trade percent change 2023-2025
 \newcommand{\ComputeHardwareHsCodes}{163} % Number of HS10 codes in Compute Hardware
 \newcommand{\ComputeHardwareTwentyThree}{144} % Compute Hardware imports in 2023 ($B)
 \newcommand{\ComputeHardwareTwentyFive}{354} % Compute Hardware imports in 2025 ($B)
@@ -38,39 +38,37 @@
 \newcommand{\SpecialtyMaterialsTwentyThree}{0} % Specialty Materials imports in 2023 ($B)
 \newcommand{\SpecialtyMaterialsTwentyFive}{0} % Specialty Materials imports in 2025 ($B)
 \newcommand{\SpecialtyMaterialsPctChange}{23} % Specialty Materials percent change 2023-2025
-\newcommand{\totalHighAiHsCodes}{645} % Total HS10 codes across all high AI categories
-\newcommand{\totalHighAiTwentyThree}{379} % Total high AI imports in 2023 ($B)
-\newcommand{\totalHighAiTwentyFive}{654} % Total high AI imports in 2025 ($B)
-\newcommand{\totalHighAiPctChange}{73} % Total high AI percent change 2023-2025
-\newcommand{\aiRelevantIndex}{211} % AI-relevant imports index (2023=100)
-\newcommand{\aggregateIndex}{104} % Aggregate imports index (2023=100)
-\newcommand{\notAiRelevantIndex}{86} % Non-AI-relevant imports index (2023=100)
-\newcommand{\lastObsDate}{January 2026} % Last observation date
-\newcommand{\aiShareTwentyThree}{15} % AI share of total imports in 2023 (%)
-\newcommand{\aiShareTwentyFour}{17} % AI share of total imports in 2024 (%)
-\newcommand{\aiShareTwentyFive}{23} % AI share of total imports in 2025 (%)
-\newcommand{\aiShareGrowth}{8} % AI share growth 2023-2025 (percentage points)
-\newcommand{\canadaHighAiImportGrowthTwentyFiveVsTwentyFour}{-4.2} % Canada high-AI import growth in 2025 vs 2024 (%)
-\newcommand{\mexicoHighAiImportGrowthTwentyFiveVsTwentyFour}{40.7} % Mexico high-AI import growth in 2025 vs 2024 (%)
-\newcommand{\canadaTotalImportGrowthTwentyFiveVsTwentyFour}{-8.3} % Canada total import growth in 2025 vs 2024 (%)
-\newcommand{\mexicoTotalImportGrowthTwentyFiveVsTwentyFour}{6.4} % Mexico total import growth in 2025 vs 2024 (%)
-\newcommand{\tariffHighTwentyFour}{1.8} % High AI relevance tariff rate in 2024 (%)
-\newcommand{\tariffHighTwentyFive}{4.7} % High AI relevance tariff rate in 2025 (%)
-\newcommand{\tariffLowTwentyFour}{2.7} % Low AI relevance tariff rate in 2024 (%)
-\newcommand{\tariffLowTwentyFive}{9.4} % Low AI relevance tariff rate in 2025 (%)
+\def\totalHighAiHsCodes{645} % Total HS10 codes across all high AI categories
+\def\totalHighAiTwentyThree{379} % Total high AI imports in 2023 ($B)
+\def\totalHighAiTwentyFive{654} % Total high AI imports in 2025 ($B)
+\def\totalHighAiPctChange{73} % Total high AI percent change 2023-2025
+\def\aiRelevantIndex{211} % AI-relevant imports index (2023=100)
+\def\aggregateIndex{104} % Aggregate imports index (2023=100)
+\def\notAiRelevantIndex{86} % Non-AI-relevant imports index (2023=100)
+\def\lastObsDate{January 2026} % Last observation date
+\def\aiShareTwentyThree{15} % AI share of total imports in 2023 (%)
+\def\aiShareTwentyFour{17} % AI share of total imports in 2024 (%)
+\def\aiShareTwentyFive{23} % AI share of total imports in 2025 (%)
+\def\aiShareGrowth{8} % AI share growth 2023-2025 (percentage points)
+\def\canadaHighAiImportGrowthTwentyFiveVsTwentyFour{-4.2} % Canada high-AI import growth in 2025 vs 2024 (%)
+\def\mexicoHighAiImportGrowthTwentyFiveVsTwentyFour{40.7} % Mexico high-AI import growth in 2025 vs 2024 (%)
+\def\canadaTotalImportGrowthTwentyFiveVsTwentyFour{-8.3} % Canada total import growth in 2025 vs 2024 (%)
+\def\mexicoTotalImportGrowthTwentyFiveVsTwentyFour{6.4} % Mexico total import growth in 2025 vs 2024 (%)
+\def\mexicoLowAiImportGrowthTwentyFiveVsTwentyFour{-4.2} % Mexico non-AI import growth in 2025 vs 2024 (%)
+\def\tariffHighTwentyFour{1.8} % High AI relevance tariff rate in 2024 (%)
+\def\tariffHighTwentyFive{4.5} % High AI relevance tariff rate in Dec 2025 (%)
+\def\tariffLowTwentyFour{2.7} % Low AI relevance tariff rate in 2024 (%)
+\def\tariffLowTwentyFive{12.1} % Low AI relevance tariff rate in Dec 2025 (%)
 \newcommand{\tariffComputeHardwareTwentyFour}{0.6} % Compute Hardware tariff rate in 2024 (%)
-\newcommand{\tariffComputeHardwareTwentyFive}{1.1} % Compute Hardware tariff rate in 2025 (%)
+\newcommand{\tariffComputeHardwareTwentyFive}{0.8} % Compute Hardware tariff rate in Dec 2025 (%)
 \newcommand{\tariffElectricalPowerTwentyFour}{3.5} % Electrical Power tariff rate in 2024 (%)
-\newcommand{\tariffElectricalPowerTwentyFive}{11.0} % Electrical Power tariff rate in 2025 (%)
+\newcommand{\tariffElectricalPowerTwentyFive}{13.8} % Electrical Power tariff rate in Dec 2025 (%)
 \newcommand{\tariffNetworkingTelecomTwentyFour}{1.5} % Networking Telecom tariff rate in 2024 (%)
-\newcommand{\tariffNetworkingTelecomTwentyFive}{4.0} % Networking Telecom tariff rate in 2025 (%)
+\newcommand{\tariffNetworkingTelecomTwentyFive}{3.1} % Networking Telecom tariff rate in Dec 2025 (%)
 \newcommand{\tariffCoolingHVACTwentyFour}{3.0} % Cooling HVAC tariff rate in 2024 (%)
-\newcommand{\tariffCoolingHVACTwentyFive}{11.3} % Cooling HVAC tariff rate in 2025 (%)
-\newcommand{\cfExcessAiImports}{265}
-\newcommand{\cfExcessAiExports}{71}
-\newcommand{\cfNetAiEffect}{194}
-\newcommand{\cfActualBalance}{-1235}
-\newcommand{\cfCounterfactualBalance}{-1041}
-
-
-
+\newcommand{\tariffCoolingHVACTwentyFive}{15.8} % Cooling HVAC tariff rate in Dec 2025 (%)
+\def\cfExcessAiImports{265}
+\def\cfExcessAiExports{71}
+\def\cfNetAiEffect{194}
+\def\cfActualBalance{-1235}
+\def\cfCounterfactualBalance{-1041}
