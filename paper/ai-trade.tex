@@ -124,19 +124,19 @@ April 2026
 
 ABSTRACT ------------------------------------------------------------------------------------------------------------
 
-This paper documents facts about international trade in AI-related products. I develop a large language model (LLM) classification tool that maps HS10 codes in U.S. trade data to products used in the construction and operation of AI infrastructure. AI-related products account for \aiShareTwentyFive{} percent of U.S. imports in 2025, and imports of these products have grown by \highAiPctChange{} percent since 2023. Over the same period, imports of non-AI-related products have grown by only \lowAiPctChange{} percent, with the divergence between the two categories beginning in early 2024. Mexico is a key market on both the import and export side, and together with Taiwan these two countries account for about half of all U.S. trade in AI-related products. Trade policy has treated these products lightly with product-level exemptions shielding much of AI-related imports from tariffs. Absent the AI boom, a simple accounting exercise suggests that the U.S. goods trade deficit would have been nearly \$200 billion smaller in 2025 
+This paper documents facts about international trade in AI-related products. I develop a large language model (LLM) classification tool that maps HS10 codes in U.S. trade data to products used in the construction and operation of AI infrastructure. AI-related products account for \aiShareTwentyFive{} percent of U.S. imports in 2025, and imports of these products have grown by \highAiPctChange{} percent since 2023. Over the same period, imports of non-AI-related products have grown by only \lowAiPctChange{} percent, with the divergence between the two categories beginning in early 2024. Mexico is a key market on both the import and export side, and together with Taiwan these two countries account for about half of all U.S. trade in AI-related products. Trade policy has treated these products lightly with product-level exemptions shielding much of AI-related imports from tariffs. Absent the AI boom, a simple accounting exercise suggests that the U.S. goods trade deficit would have been nearly \$200 billion smaller in 2025.
 
 ------------------------------------------------------------------------------------------------------------------------------
 \vspace{0.25cm}
 
-%JEL Classification: F13, F14\\
-%%%
-%%%
-%Keywords: Tariffs, U.S. Trade Policy, Trade Restrictiveness Index
+JEL Classification: F13, O33\\
+%%
+%%
+Keywords: AI, trade patterns, tariffs, LLM classification
 
 
 
-\vspace{4.25cm}
+\vspace{2.75cm}
 
 {\footnotesize Email: michael.e.waugh@gmail.com. The views expressed herein are those of the author and not necessarily those of the Federal Reserve Bank of Minneapolis or the Federal Reserve System. My GitHub repository provides the code and supplementary work behind this paper at \url{https://github.com/tradewartracker/ai-trade-index}.}
 
@@ -237,7 +237,7 @@ Tables \ref{tab:top10_high_relevance_landscape} and \ref{tab:top11to20_high_rele
 \caption{U.S. Imports of AI and non-AI products}\label{fig:ai-trade-index}
 \end{figure}
 
-While the top 10 list is dominated by computer hardware equipment, other notable products also appear. In particular, {\tt 7403110000} (refined copper cathodes) is the sixth most important product. The LLM reasoning is that refined copper cathodes are a key input into copper products (e.g., electrical wire) used in data centers. Similarly, insulated fiber optic cables ({\tt 8544700000}) appear in the top 20, classified under Networking Telecom | the physical backbone connecting GPU clusters. Approaches to measure the importance of trade in AI-related products by focusing on a narrow set of semiconductor codes would be miss these products entirely. 
+While the top 10 list is dominated by computer hardware equipment, other notable products also appear. In particular, {\tt 7403110000} (refined copper cathodes) is the sixth most important product. The LLM reasoning is that refined copper cathodes are a key input into copper products (e.g., electrical wire) used in data centers. Similarly, insulated fiber optic cables ({\tt 8544700000}) appear in the top 20, classified under Networking Telecom | the physical backbone connecting GPU clusters. Approaches to measure the importance of trade in AI-related products by focusing on a narrow set of semiconductor codes would miss these products entirely. 
 
 In looking through Table \ref{tab:trade_hierarchical} or \ref{tab:top10_high_relevance_landscape}, one cannot help but notice the dramatic growth in trade volumes in nearly all categories. I discuss this growth next.
 
@@ -277,7 +277,7 @@ Figure \ref{fig:ai-trade-country-catagoy} breaks down the country composition by
 \caption{Top Sources by AI-Related Product Category}\label{fig:ai-trade-country-catagoy}
 \end{figure}
 
-A final surprising feature is the small and diminishing role of China. Figure \ref{fig:ai-trade-country} shows that Taiwan and China held similar shares in 2023, but the two have diverged since then. Now China's share of AI-relevant products is comparable to Vietnam and Thailand. 
+A final surprising feature is the small and diminishing role of China. Figure \ref{fig:ai-trade-country} shows that Taiwan and China held similar shares in 2023, but the two have diverged since then. Now China's share of AI-relevant products is comparable to Vietnam and Thailand. One important issue with China is that trade policy has become much more restrictive toward China than toward other countries. As I discuss below, AI-relevant products have generally been exempted from the ``Liberation Day tariffs'' associated with Executive Order 14257. However, Chinese imports faced an additional 20 percent tariff rate from the ``fentanyl tariffs'' associated with Executive Order 14195, and these fentanyl tariffs are not covered by the product-level exemptions. Thus, China was uniquely penalized by the changes in trade policy. 
 
 This breakdown by source and product illustrates why a broad classification of AI-relevant goods matters. A narrow focus on chips alone would suggest that AI trade is primarily a U.S.–Taiwan story. Figure \ref{fig:ai-trade-country-catagoy} shows it is much broader and it highlights the importance of Mexico.
 
@@ -308,7 +308,9 @@ Why are tariffs lower on AI-related products? The answer is exemptions. Several 
 \input{tables/exemption_coverage.tex}
 }
 
-Table \ref{tab:exemption_coverage} reports the coverage of these exemption lists for AI \textbf{High} products. Of the \$\highAiTwentyFive{} billion in \textbf{High} AI imports in 2025, nearly \exemptionAnyPct{} percent falls on at least one exemption list. The Consumer Electronics exemption alone covers \$\exemptionCEDollars{} billion | the largest single exemption by value | because it captures the core compute hardware products (GPUs, processors, memory, SSDs, networking equipment) that dominate AI trade by value. The Annex II list adds critical materials like copper cathodes and specialty metals. The Section 122 Surcharge exemptions cover a similar set of products, largely overlapping with the Consumer Electronics and Annex II lists.
+Table \ref{tab:exemption_coverage} reports the coverage of these exemption lists for AI \textbf{High} products. Of the \$\highAiTwentyFive{} billion in \textbf{High} AI imports in 2025, nearly \exemptionAnyPct{} percent falls on at least one exemption list. The Consumer Electronics exemption alone covers \$\exemptionCEDollars{} billion | the largest single exemption by value | because it captures the core compute hardware products (GPUs, processors, memory, SSDs, networking equipment) that dominate AI trade by value. The Annex II list adds critical materials like copper cathodes and specialty metals.\footnote{And note that these exemptions only apply to the tariffs associated with Executive Order 14257. As discussed above, China faced an additional 20 percent tariff rate associated with Executive Order 14195, the fentanyl tariffs. Canada and Mexico faced these additional tariffs as well, but could be exempt if they were USMCA compliant.} 
+
+The Section 122 Surcharge exemptions cover a similar set of products, largely overlapping with the Consumer Electronics and Annex II lists.
 
 The category-level pattern in exemptions helps explain the cross-category variation in effective tariff rates. Compute Hardware is almost entirely shielded: \exemptionComputeHardwarePct{} percent of its \$\ComputeHardwareTwentyFive{} billion in imports falls on an exemption list. Networking Telecom is similarly well-covered at \exemptionNetworkingTelecomPct{} percent. By contrast, Electrical Power (\exemptionElectricalPowerPct{} percent), Cooling HVAC (\exemptionCoolingHVACPct{} percent), and Building Structure (\exemptionBuildingStructurePct{} percent) have little or no exemption coverage, which explains why these categories face effective tariff rates above 11 percent.
 
