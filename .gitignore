@@ -227,3 +227,7 @@ data-input/*.parquet
 *.toc
 *.nav
 *.snm
+
+# Excel
+*.xlsx
+*.xls
